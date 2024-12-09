@@ -8,37 +8,30 @@ import { useNavigate } from "react-router-dom";
 export default function OAuth() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const handleGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const auth = getAuth(app);
 
-  const handleGoogle = () => {
-    const provider = new GoogleAuthProvider();
-    const auth = getAuth(app);
+      const result = await signInWithPopup(auth, provider);
 
-    // Trigger popup immediately after user action
-    signInWithPopup(auth, provider)
-      .then(async (result) => {
-        try {
-          const response = await fetch(
-            "https://essential-carin-isara-373532ad.koyeb.app/googlelogin",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                email: result.user.email,
-                photoURL: result.user.photoURL,
-              }),
-            }
-          );
-
-          const data = await response.json();
-          dispatch(signInSuccess(data));
-          navigate("/");
-        } catch (error) {
-          console.log(error.message);
+      const response = await fetch(
+        "https://essential-carin-isara-373532ad.koyeb.app/googlelogin",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: result.user.email,
+            photoURL: result.user.photoURL,
+          }),
         }
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+      );
+      const data = await response.json();
+      dispatch(signInSuccess(data));
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -49,7 +42,7 @@ export default function OAuth() {
     >
       {/* Google logo */}
       <img
-        src="images/7123025_logo_google_g_icon.png"
+        src="images\7123025_logo_google_g_icon.png"
         alt="Google Logo"
         className="w-9 h-9"
       />

@@ -6,13 +6,15 @@ import {
   FaRobot,
   FaCheckCircle,
 } from "react-icons/fa";
-import NavbarGettingStarted from "../components/navbar_gettingStarted";
+import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 
 export default function GettingStarted() {
   return (
     <div>
-      <NavbarGettingStarted />
+      <div className="App">
+        <Navbar />
+      </div>
 
       {/* Video Section*/}
       <section className="bg-gray-100 py-10">

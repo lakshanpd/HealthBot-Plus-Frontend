@@ -121,13 +121,16 @@ const Signup = () => {
     if (validateStep2()) {
       // Sending data to the backend using fetch API
       try {
-        const response = await fetch("https://essential-carin-isara-373532ad.koyeb.app/signup", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
+        const response = await fetch(
+          "https://essential-carin-isara-373532ad.koyeb.app/signup",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          }
+        );
 
         const result = await response.json();
         if (result.status === "Ok") {
@@ -148,7 +151,7 @@ const Signup = () => {
         <Navbar />
       </div>
       <motion.div
-        className="flex items-center justify-end h-screen w-screen bg-cover bg-center pr-60"
+        className="flex items-center justify-center sm:justify-end h-screen w-screen bg-cover bg-center px-4 sm:pr-20 lg:pr-60"
         initial={{ opacity: 0, x: 0 }}
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: 0 }}
@@ -156,12 +159,14 @@ const Signup = () => {
         style={{ backgroundImage: "url('/images/signup_background.jpg')" }}
       >
         <div
-          className={`bg-white p-6 rounded-xl shadow-lg max-w-xs w-1/2 transform transition-opacity duration-300 ${transitionStage === "fadeIn" ? "opacity-100" : "opacity-0"
-            }`}
+          className={`bg-white p-4 sm:p-6 rounded-lg shadow-lg w-80 max-w-md sm:max-w-lg lg:max-w-xl transform transition-opacity duration-300 ${
+            transitionStage === "fadeIn" ? "opacity-100" : "opacity-0"
+          }`}
         >
+          {/* Step 1: Enter Details */}
           {step === 1 && (
             <>
-              <h2 className="text-xl font-bold mb-4 text-center text-gray-800">
+              <h2 className="text-lg sm:text-xl font-bold mb-4 text-center text-gray-800">
                 Enter Your Details
               </h2>
               <div className="mb-3">
@@ -196,7 +201,7 @@ const Signup = () => {
                   name="birthday"
                   value={formData.birthday}
                   onChange={handleChange}
-                  className="mt-1 w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 opacity-75"
+                  className="mt-1 w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
                 {errors.birthday && (
                   <p className="text-red-500 text-xs">{errors.birthday}</p>
@@ -208,7 +213,7 @@ const Signup = () => {
                   name="sex"
                   value={formData.sex}
                   onChange={handleChange}
-                  className="mt-1 w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 opacity-75"
+                  className="mt-1 w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
                 >
                   <option value="">Select</option>
                   <option value="male">Male</option>
@@ -221,7 +226,9 @@ const Signup = () => {
                 )}
               </div>
               <div className="mb-5">
-                <label className="block text-gray-700 text-sm">Description</label>
+                <label className="block text-gray-700 text-sm">
+                  Description
+                </label>
                 <textarea
                   name="description"
                   value={formData.description}
@@ -245,13 +252,16 @@ const Signup = () => {
             </>
           )}
 
+          {/* Step 2: Create Account */}
           {step === 2 && (
             <>
-              <h2 className="text-xl font-bold mb-4 text-center text-gray-800">
+              <h2 className="text-lg sm:text-xl font-bold mb-4 text-center text-gray-800">
                 Create Account
               </h2>
               <div className="mb-3">
-                <label className="block text-gray-700 text-sm">Email Address</label>
+                <label className="block text-gray-700 text-sm">
+                  Email Address
+                </label>
                 <input
                   type="email"
                   name="email"
@@ -279,7 +289,9 @@ const Signup = () => {
                 )}
               </div>
               <div className="mb-3">
-                <label className="block text-gray-700 text-sm">Confirm Password</label>
+                <label className="block text-gray-700 text-sm">
+                  Confirm Password
+                </label>
                 <input
                   type="password"
                   name="confirmPassword"
@@ -294,10 +306,10 @@ const Signup = () => {
                   </p>
                 )}
               </div>
-
-              {/* Doctor Selection Dropdown */}
               <div className="mb-5">
-                <label className="block text-gray-700 text-sm">Select Doctor</label>
+                <label className="block text-gray-700 text-sm">
+                  Select Doctor
+                </label>
                 <select
                   name="doctor"
                   value={formData.doctor}
@@ -311,7 +323,6 @@ const Signup = () => {
                   <p className="text-red-500 text-xs">{errors.doctor}</p>
                 )}
               </div>
-
               <div className="flex justify-between items-center">
                 <button
                   onClick={handlePreviousStep}
@@ -321,7 +332,7 @@ const Signup = () => {
                 </button>
                 <button
                   onClick={handleSubmit}
-                  className="px-3 py-2 bg-blue-500 text-white rounded-md text-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-transform transform hover:scale-105"
+                  className="px-6 py-2 bg-blue-500 text-white rounded-md text-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-transform transform hover:scale-105"
                 >
                   Sign Up
                 </button>

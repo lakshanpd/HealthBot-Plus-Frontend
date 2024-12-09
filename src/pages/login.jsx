@@ -25,17 +25,20 @@ const Login = () => {
 
     const loginData = {
       email: email,
-      password: password
+      password: password,
     };
 
     try {
-      const response = await fetch("https://essential-carin-isara-373532ad.koyeb.app/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(loginData)
-      });
+      const response = await fetch(
+        "https://essential-carin-isara-373532ad.koyeb.app/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginData),
+        }
+      );
 
       const result = await response.json();
 
@@ -44,7 +47,7 @@ const Login = () => {
         dispatch(signInSuccess(result));
         console.log("User signed in successfully:", result);
         if (result.is_patient) {
-          navigate('/');
+          navigate("/");
         } else {
           navigate(`/doctor/${result._id}`);
         }
@@ -67,13 +70,16 @@ const Login = () => {
     }
 
     try {
-      const response = await fetch("https://essential-carin-isara-373532ad.koyeb.app/reset-password", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email })
-      });
+      const response = await fetch(
+        "https://essential-carin-isara-373532ad.koyeb.app/reset-password",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        }
+      );
 
       const result = await response.json();
       if (response.ok && result.message === "email sent") {
@@ -84,7 +90,9 @@ const Login = () => {
         setShowCodeInput(false);
       }
     } catch (error) {
-      setErrorMessage("An error occurred while sending the reset password request.");
+      setErrorMessage(
+        "An error occurred while sending the reset password request."
+      );
       setShowCodeInput(false);
     }
   };
@@ -92,13 +100,16 @@ const Login = () => {
   // Handler for verifying the code
   const handleVerifyCode = async () => {
     try {
-      const response = await fetch("https://essential-carin-isara-373532ad.koyeb.app/verify-code", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, code })
-      });
+      const response = await fetch(
+        "https://essential-carin-isara-373532ad.koyeb.app/verify-code",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, code }),
+        }
+      );
 
       const result = await response.json();
       if (response.ok && result.message === "success") {
@@ -123,19 +134,24 @@ const Login = () => {
     }
 
     try {
-      const response = await fetch("https://essential-carin-isara-373532ad.koyeb.app/reset-password-final", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, newPassword })
-      });
+      const response = await fetch(
+        "https://essential-carin-isara-373532ad.koyeb.app/reset-password-final",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, newPassword }),
+        }
+      );
 
       const result = await response.json();
       if (response.ok && result.message === "success") {
-        setErrorMessage("Password has been reset successfully. Redirecting to the homepage...");
+        setErrorMessage(
+          "Password has been reset successfully. Redirecting to the homepage..."
+        );
         setShowPasswordReset(false);
-        navigate('/');
+        navigate("/");
       } else {
         setErrorMessage(result.message);
       }
@@ -150,20 +166,24 @@ const Login = () => {
         <Navbar />
       </div>
       <motion.div
-        className="flex items-center justify-end h-screen w-screen bg-cover pr-60"
+        className="flex items-center justify-center sm:justify-end h-screen w-screen bg-cover px-4 sm:pr-20 lg:pr-60"
         initial={{ opacity: 0, x: 0 }}
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: 0 }}
         transition={{ duration: 0.5 }}
         style={{ backgroundImage: "url('/images/login_background.jpg')" }}
       >
-        <div className="bg-white p-6 rounded-xl shadow-lg max-w-xs w-1/2">
-          <h2 className="text-xl font-bold mb-6 text-center text-gray-800">
+        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg w-80 max-w-sm sm:max-w-md lg:max-w-lg">
+          <h2 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 text-center text-gray-800">
             Log In
           </h2>
-          <form onSubmit={showPasswordReset ? handlePasswordReset : handleSubmit}>
+          <form
+            onSubmit={showPasswordReset ? handlePasswordReset : handleSubmit}
+          >
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm">Email Address</label>
+              <label className="block text-gray-700 text-sm">
+                Email Address
+              </label>
               <input
                 type="email"
                 className="mt-1 w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -175,7 +195,7 @@ const Login = () => {
             </div>
 
             {!showPasswordReset && (
-              <div className="mb-6">
+              <div className="mb-4">
                 <label className="block text-gray-700 text-sm">Password</label>
                 <input
                   type="password"
@@ -205,7 +225,9 @@ const Login = () => {
             {showPasswordReset && (
               <>
                 <div className="mb-4">
-                  <label className="block text-gray-700 text-sm">Enter New Password</label>
+                  <label className="block text-gray-700 text-sm">
+                    Enter New Password
+                  </label>
                   <input
                     type="password"
                     className="mt-1 w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -216,7 +238,9 @@ const Login = () => {
                   />
                 </div>
                 <div className="mb-4">
-                  <label className="block text-gray-700 text-sm">Re-enter New Password</label>
+                  <label className="block text-gray-700 text-sm">
+                    Re-enter New Password
+                  </label>
                   <input
                     type="password"
                     className="mt-1 w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -262,7 +286,9 @@ const Login = () => {
               )}
 
               {errorMessage && (
-                <p className="text-red-500 text-center text-sm mt-2">{errorMessage}</p>
+                <p className="text-red-500 text-center text-sm mt-2">
+                  {errorMessage}
+                </p>
               )}
             </div>
           </form>

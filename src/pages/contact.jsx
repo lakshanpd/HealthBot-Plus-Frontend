@@ -1,8 +1,13 @@
 import React, { useState, useRef } from "react";
 import Faq from "../components/faq_card";
 import Footer from "../components/footer";
-import NavbarContactUs from "../components/navbar_contactUs"; // Use the custom Navbar for Contact Us page
-import { FaRegEnvelopeOpen, FaQuestionCircle, FaArrowDown, FaArrowUp } from "react-icons/fa"; // Import arrow icons
+import Navbar from "../components/navbar";
+import {
+  FaRegEnvelopeOpen,
+  FaQuestionCircle,
+  FaArrowDown,
+  FaArrowUp,
+} from "react-icons/fa"; // Import arrow icons
 
 export default function Contact() {
   const [message, setMessage] = useState("");
@@ -109,7 +114,9 @@ export default function Contact() {
 
   return (
     <div>
-      <NavbarContactUs /> {/* Use NavbarContactUs component */}
+      <div className="App">
+        <Navbar />
+      </div>
       <div className="flex justify-center items-center mb-8 mt-10">
         <img
           src={"/images/HealthBot+.PNG"}
@@ -122,7 +129,8 @@ export default function Contact() {
         <div className="w-auto p-8 border border-gray-300 rounded-lg bg-gray-50 shadow-lg">
           <div className="flex flex-col items-center">
             <div className="flex items-center mb-4 px-4">
-              <FaRegEnvelopeOpen className="mr-4 text-3xl text-blue-500" />  {/* Added envelope icon */}
+              <FaRegEnvelopeOpen className="mr-4 text-3xl text-blue-500" />{" "}
+              {/* Added envelope icon */}
               <h1 className="text-2xl font-semibold">Contact Us</h1>
             </div>
 
@@ -147,7 +155,8 @@ export default function Contact() {
         <div className="w-[50%] flex items-center justify-center my-8">
           <div className="flex-grow border-t-2 border-gray-300"></div>
           <span className="mx-8 text-lg font-bold text-center text-[20px] font-open-sans-condensed">
-            FAQ <FaQuestionCircle className="inline-block text-blue-500 ml-2" /> {/* FAQ with icon */}
+            FAQ <FaQuestionCircle className="inline-block text-blue-500 ml-2" />{" "}
+            {/* FAQ with icon */}
           </span>
           <div className="flex-grow border-t-2 border-gray-300"></div>
         </div>

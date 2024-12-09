@@ -10,7 +10,7 @@ import Doctor from "./pages/doctor.jsx";
 import DoctorReview from "./pages/doctorReview";
 import Login from "./pages/login";
 import Diagnose from "./pages/diagnose";
-import Contact from "./pages/contact";  
+import Contact from "./pages/contact";
 import DoctorOverview from "./pages/doctor_overview";
 import PatientStories from "./pages/patient_stories";
 import GettingStarted from "./pages/gettingStarted.jsx";
@@ -32,7 +32,6 @@ function App() {
         <Route path="/doctor_overview" element={<DoctorOverview />} />
         <Route path="/patient_stories" element={<PatientStories />} />
         <Route path="/getting_started" element={<GettingStarted />} />
-
       </Routes>
     </Router>
   );

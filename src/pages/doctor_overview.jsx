@@ -1,31 +1,57 @@
-import React from 'react';
-import { FaEnvelope, FaUser, FaUniversity, FaBriefcase, FaHospitalAlt, FaIdBadge, FaStickyNote, FaClipboardCheck, FaCheck } from 'react-icons/fa'; // Import icons
-import { useSelector } from 'react-redux';
-import Navbar from "../components/navbar_doctor_overview"; // Import Navbar
+import React from "react";
+import {
+  FaEnvelope,
+  FaUser,
+  FaUniversity,
+  FaBriefcase,
+  FaHospitalAlt,
+  FaIdBadge,
+  FaStickyNote,
+  FaClipboardCheck,
+  FaCheck,
+} from "react-icons/fa"; // Import icons
+import { useSelector } from "react-redux";
+import Navbar from "../components/navbar";
 import Footer from "../components/footer"; // Import Footer
 
 function DoctorOverview() {
   const { currentUser } = useSelector((state) => state.user);
 
   const doctorInfo = {
-    name: 'Dr. Athula',
-    email: 'doctor@gmail.com',
+    name: "Dr. Athula",
+    email: "doctor@gmail.com",
     age: 51,
-    country: 'Sri Lanka',
-    profile: 'https://static.vecteezy.com/system/resources/previews/001/511/502/non_2x/male-doctor-icon-free-vector.jpg', // Fixed doctor profile image
-    specializations: ['Dermatology', 'Melanoma Treatment', 'Cosmetic Dermatology'],
-    qualifications: ['MBBS (University of Colombo)', 'MD in Dermatology (University of Colombo)', 'Fellowship in Skin Cancer Treatment (Australia)'],
-    experience: '25 years of experience in treating skin diseases, with a special focus on skin cancer and cosmetic dermatology.',
-    hospitals: ['National Hospital of Sri Lanka', 'Teaching Hospital Karapitiya', 'District General Hospital Matara'],
-    registration: 'Sri Lanka Medical Council - Reg No: 12345',
-    specialNote: 'Dr. Athula has been a pioneer in using AI for skin disease detection and has contributed to multiple research papers on skin cancer detection.'
+    country: "Sri Lanka",
+    profile:
+      "https://static.vecteezy.com/system/resources/previews/001/511/502/non_2x/male-doctor-icon-free-vector.jpg", // Fixed doctor profile image
+    specializations: [
+      "Dermatology",
+      "Melanoma Treatment",
+      "Cosmetic Dermatology",
+    ],
+    qualifications: [
+      "MBBS (University of Colombo)",
+      "MD in Dermatology (University of Colombo)",
+      "Fellowship in Skin Cancer Treatment (Australia)",
+    ],
+    experience:
+      "25 years of experience in treating skin diseases, with a special focus on skin cancer and cosmetic dermatology.",
+    hospitals: [
+      "National Hospital of Sri Lanka",
+      "Teaching Hospital Karapitiya",
+      "District General Hospital Matara",
+    ],
+    registration: "Sri Lanka Medical Council - Reg No: 12345",
+    specialNote:
+      "Dr. Athula has been a pioneer in using AI for skin disease detection and has contributed to multiple research papers on skin cancer detection.",
   };
 
   return (
     <div>
-      <Navbar activePage="doctor_overview" /> {/* Pass the activePage prop */}
+      <div className="App">
+        <Navbar />
+      </div>
       <div className="container mx-auto p-8 bg-white shadow-lg rounded-lg mt-6">
-        
         {/* Doctor Profile Image */}
         <div className="text-center mb-8">
           <img
@@ -43,10 +69,18 @@ function DoctorOverview() {
               <FaUser className="text-blue-500 text-2xl mr-3" />
               <h3 className="text-2xl font-semibold">Basic Information</h3>
             </div>
-            <p><strong>Name:</strong> {doctorInfo.name}</p>
-            <p><strong>Email:</strong> {doctorInfo.email}</p>
-            <p><strong>Age:</strong> {doctorInfo.age}</p>
-            <p><strong>Country:</strong> {doctorInfo.country}</p>
+            <p>
+              <strong>Name:</strong> {doctorInfo.name}
+            </p>
+            <p>
+              <strong>Email:</strong> {doctorInfo.email}
+            </p>
+            <p>
+              <strong>Age:</strong> {doctorInfo.age}
+            </p>
+            <p>
+              <strong>Country:</strong> {doctorInfo.country}
+            </p>
           </div>
 
           {/* Specializations Box */}
@@ -123,7 +157,6 @@ function DoctorOverview() {
         </div>
       </div>
 
-      
       <Footer />
     </div>
   );

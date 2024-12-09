@@ -8,15 +8,23 @@ function Footer() {
       <div className="bg-gray-900 text-gray-300 py-10 px-5 md:px-20 grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* About Section */}
         <div className="flex flex-col">
-          <h2 className="text-lg font-semibold text-white mb-4">About HealthBot+</h2>
+          <h2 className="text-lg font-semibold text-white mb-4">
+            About HealthBot+
+          </h2>
           <p className="text-justify text-sm">
-            HealthBot+ is dedicated to transforming healthcare by harnessing the power of AI, offering accessible and accurate early disease detection, while delivering personalized treatment insights tailored to each patient. Our vision is to make healthcare more efficient and proactive for everyone.
+            HealthBot+ is dedicated to transforming healthcare by harnessing the
+            power of AI, offering accessible and accurate early disease
+            detection, while delivering personalized treatment insights tailored
+            to each patient. Our vision is to make healthcare more efficient and
+            proactive for everyone.
           </p>
         </div>
 
         {/* Helpful Links Section */}
         <div className="flex flex-col">
-          <h2 className="text-lg font-semibold text-white mb-4">Helpful Links</h2>
+          <h2 className="text-lg font-semibold text-white mb-4">
+            Helpful Links
+          </h2>
           <div className="flex flex-col space-y-2 text-sm">
             <a
               href="https://www.mayoclinic.org/diseases-conditions/melanoma/symptoms-causes/syc-20374884"

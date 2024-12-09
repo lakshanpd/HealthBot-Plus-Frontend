@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import "../tailwind.css";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import EmergencyIcon from '@mui/icons-material/Emergency';
-
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import EmergencyIcon from "@mui/icons-material/Emergency";
 
 const Report = () => {
   const { reportId } = useParams(); // Extract reportId from the URL
@@ -14,19 +13,21 @@ const Report = () => {
   const [doctorComment, setDoctorComment] = useState(""); // State to manage doctor comments
   const [comment, setComment] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-  const { currentUser } = useSelector(state => state.user);
+  const { currentUser } = useSelector((state) => state.user);
   const [showButton, setShowButton] = useState(false);
-
 
   useEffect(() => {
     const fetchReportDetails = async () => {
       try {
-        const response = await fetch(`https://essential-carin-isara-373532ad.koyeb.app/getreport/${reportId}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          `https://essential-carin-isara-373532ad.koyeb.app/getreport/${reportId}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         if (response.ok) {
           const reportData = await response.json();
@@ -67,13 +68,16 @@ const Report = () => {
   // Function to handle posting the updated doctor's comment
   const handlePostComment = async () => {
     try {
-      const response = await fetch(`https://essential-carin-isara-373532ad.koyeb.app/updatereport/${report._id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ doctor_comment: doctorComment }), // Send the updated comment to the backend
-      });
+      const response = await fetch(
+        `https://essential-carin-isara-373532ad.koyeb.app/updatereport/${report._id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ doctor_comment: doctorComment }), // Send the updated comment to the backend
+        }
+      );
 
       if (response.ok) {
         setComment(true);
@@ -87,15 +91,18 @@ const Report = () => {
 
   const handlePrediction = async () => {
     try {
-      const response = await fetch(`https://essential-carin-isara-373532ad.koyeb.app/updatereportaccuracy/${report._id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model_accuracy: "False Prediction"
-        }),
-      });
+      const response = await fetch(
+        `https://essential-carin-isara-373532ad.koyeb.app/updatereportaccuracy/${report._id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            model_accuracy: "False Prediction",
+          }),
+        }
+      );
 
       if (response.ok) {
         setIsDisabled(true);
@@ -107,7 +114,8 @@ const Report = () => {
     }
   };
 
-  if (!report) return <div className="text-center text-gray-500">Loading...</div>;
+  if (!report)
+    return <div className="text-center text-gray-500">Loading...</div>;
 
   return (
     <motion.div
@@ -118,7 +126,11 @@ const Report = () => {
       transition={{ duration: 0.5 }}
     >
       <div className="flex justify-center items-center mb-8">
-        <img src={"/images/HealthBot+.PNG"} alt="Product Logo" className="w-41 h-auto align-middle" />
+        <img
+          src={"/images/HealthBot+.PNG"}
+          alt="Product Logo"
+          className="w-41 h-auto align-middle"
+        />
       </div>
       <div className="flex justify-center mb-4 px-4 flex-col">
         <h1 className="text-4xl font-semibold text-center text-gray-800 rounded-lg mb-6 bg-gray-100 p-4 border border-gray-300 inline-block flex items-center justify-center">
@@ -144,7 +156,9 @@ const Report = () => {
 
       <div className="bg-gray-100 shadow-lg rounded-lg p-6 my-8 flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-semibold text-left my-8">Patient Details</h1>
+          <h1 className="text-2xl font-semibold text-left my-8">
+            Patient Details
+          </h1>
           <p className="text-lg mb-4">
             <strong>Patient ID:</strong> {report.user_id}
           </p>
@@ -173,7 +187,9 @@ const Report = () => {
       </div>
 
       <div className="bg-gray-100 shadow-lg rounded-lg p-6 my-8">
-        <h1 className="text-2xl font-semibold text-left my-8">Doctor Details</h1>
+        <h1 className="text-2xl font-semibold text-left my-8">
+          Doctor Details
+        </h1>
         <p className="text-lg mb-4">
           <strong>Doctor ID:</strong> {report.doctor_id}
         </p>
@@ -187,9 +203,12 @@ const Report = () => {
 
       <div className="bg-gray-100 shadow-lg rounded-lg p-6 my-8 flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-semibold text-left my-8">Patient Submission</h1>
+          <h1 className="text-2xl font-semibold text-left my-8">
+            Patient Submission
+          </h1>
           <p className="text-lg mb-4">
-            <strong>General Sight:</strong> {report.anatom_site_general_challenge}
+            <strong>General Sight:</strong>{" "}
+            {report.anatom_site_general_challenge}
           </p>
         </div>
 
@@ -205,10 +224,14 @@ const Report = () => {
         report.is_melanoma === "Yes" ? (
           <div className="bg-gray-100 shadow-lg rounded-lg p-6 my-8 flex justify-between items-center">
             <div>
-              <h1 className="text-2xl font-semibold text-left my-8">Model Prediction</h1>
+              <h1 className="text-2xl font-semibold text-left my-8">
+                Model Prediction
+              </h1>
               <p className="text-lg mb-4">
                 <strong>Melanoma Probability: </strong>
-                <span className="text-red-500 font-bold">{(report.melanoma_probability * 100).toFixed(2)}%</span>
+                <span className="text-red-500 font-bold">
+                  {(report.melanoma_probability * 100).toFixed(2)}%
+                </span>
               </p>
             </div>
 
@@ -231,15 +254,21 @@ const Report = () => {
         ) : (
           <div className="bg-gray-100 shadow-lg rounded-lg p-6 my-8 flex justify-between items-center">
             <div>
-              <h1 className="text-2xl font-semibold text-left my-8">Model Prediction</h1>
+              <h1 className="text-2xl font-semibold text-left my-8">
+                Model Prediction
+              </h1>
               <p className="text-lg mb-4">
                 <strong>Disease Class: </strong>
-                <span className="text-red-500 font-bold">{report.disease_class}</span>
+                <span className="text-red-500 font-bold">
+                  {report.disease_class}
+                </span>
               </p>
               {report.disease_probability > 0.5 && (
                 <p className="text-lg mb-4">
                   <strong>Disease Probability: </strong>
-                  <span className="text-red-500 font-bold">{(report.disease_probability * 100).toFixed(2)}%</span>
+                  <span className="text-red-500 font-bold">
+                    {(report.disease_probability * 100).toFixed(2)}%
+                  </span>
                 </p>
               )}
             </div>
@@ -263,7 +292,9 @@ const Report = () => {
       ) : null}
 
       <div className="bg-gray-100 shadow-lg rounded-lg p-6 my-8">
-        <h1 className="text-2xl font-semibold text-left my-8">Doctor's Review</h1>
+        <h1 className="text-2xl font-semibold text-left my-8">
+          Doctor's Review
+        </h1>
 
         {currentUser.is_patient === false ? (
           <>
@@ -288,10 +319,11 @@ const Report = () => {
               </button>
 
               <button
-                className={`py-2 px-6 rounded-md transition duration-300 ${isDisabled || report.model_accuracy !== "Undefined"
-                  ? "bg-gray-500"
-                  : "bg-red-500 hover:bg-red-600"
-                  } text-white`}
+                className={`py-2 px-6 rounded-md transition duration-300 ${
+                  isDisabled || report.model_accuracy !== "Undefined"
+                    ? "bg-gray-500"
+                    : "bg-red-500 hover:bg-red-600"
+                } text-white`}
                 onClick={handlePrediction}
                 disabled={isDisabled || report.model_accuracy !== "Undefined"}
               >
@@ -299,11 +331,17 @@ const Report = () => {
               </button>
             </div>
 
-            {comment && <p className="text-green-500 py-2">Comment posted successfully!</p>}
+            {comment && (
+              <p className="text-green-500 py-2">
+                Comment posted successfully!
+              </p>
+            )}
           </>
-        ) : <p className="text-lg mb-4">
-          <strong>Doctor's Comments:</strong> {report.doctor_comment}
-        </p>}
+        ) : (
+          <p className="text-lg mb-4">
+            <strong>Doctor's Comments:</strong> {report.doctor_comment}
+          </p>
+        )}
       </div>
       {showButton && (
         <button
@@ -313,7 +351,6 @@ const Report = () => {
           <KeyboardArrowUpIcon />
         </button>
       )}
-
     </motion.div>
   );
 };
