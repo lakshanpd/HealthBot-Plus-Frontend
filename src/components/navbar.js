@@ -115,7 +115,7 @@ function Navbar() {
           </div>
 
           {/* Menu Items */}
-          <div className="flex flex-col items-center justify-center h-full overflow-y-auto">
+          <div className="flex flex-col items-center justify-center py-10 overflow-y-auto">
             {menuItems.map((item) => (
               <button
                 key={item.path}
