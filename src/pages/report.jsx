@@ -139,7 +139,8 @@ const Report = () => {
         </h1>
       </div>
 
-      <div className="bg-gray-100 shadow-lg rounded-lg p-6">
+      <div className="bg-gray-100 shadow-lg rounded-lg p-6 mb-8">
+        <h1 className="text-2xl font-semibold text-left mb-8">Report Details</h1>
         <p className="text-lg mb-4">
           <strong>Report ID:</strong> {report._id}
         </p>
@@ -154,11 +155,9 @@ const Report = () => {
         </p>
       </div>
 
-      <div className="bg-gray-100 shadow-lg rounded-lg p-6 my-8 flex justify-between items-center">
-        <div>
-          <h1 className="text-2xl font-semibold text-left my-8">
-            Patient Details
-          </h1>
+      <div className="bg-gray-100 shadow-lg rounded-lg p-6 mb-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="w-full md:w-1/2">
+          <h1 className="text-2xl font-semibold text-left mb-8">Patient Details</h1>
           <p className="text-lg mb-4">
             <strong>Patient ID:</strong> {report.user_id}
           </p>
@@ -177,19 +176,17 @@ const Report = () => {
         </div>
 
         {/* Image section */}
-        <div className="ml-8">
+        <div className="w-full md:w-1/2 flex justify-center md:justify-end mt-4 md:mt-0">
           <img
             src={report.user_profile} // Replace with the image source
             alt="Patient Profile"
-            className="w-32 h-32 object-cover box-full rounded-lg"
+            className="w-32 h-32 object-cover rounded-lg"
           />
         </div>
       </div>
 
-      <div className="bg-gray-100 shadow-lg rounded-lg p-6 my-8">
-        <h1 className="text-2xl font-semibold text-left my-8">
-          Doctor Details
-        </h1>
+      <div className="bg-gray-100 shadow-lg rounded-lg p-6 mb-8">
+        <h1 className="text-2xl font-semibold text-left mb-8">Doctor Details</h1>
         <p className="text-lg mb-4">
           <strong>Doctor ID:</strong> {report.doctor_id}
         </p>
@@ -201,32 +198,29 @@ const Report = () => {
         </p>
       </div>
 
-      <div className="bg-gray-100 shadow-lg rounded-lg p-6 my-8 flex justify-between items-center">
-        <div>
-          <h1 className="text-2xl font-semibold text-left my-8">
-            Patient Submission
-          </h1>
+      <div className="bg-gray-100 shadow-lg rounded-lg p-6 mb-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="w-full md:w-1/2">
+          <h1 className="text-2xl font-semibold text-left mb-8">Patient Submission</h1>
           <p className="text-lg mb-4">
-            <strong>General Sight:</strong>{" "}
-            {report.anatom_site_general_challenge}
+            <strong>General Sight:</strong> {report.anatom_site_general_challenge}
           </p>
         </div>
 
         {/* Image section */}
-        <img
-          src={report.image}
-          alt="Explanation Image 1"
-          className="w-60 h-32 object-cover rounded-lg cursor-pointer transition-transform duration-300 hover:scale-125"
-          onClick={() => window.open(report.image, "_blank")}
-        />
+        <div className="w-full md:w-1/2 flex justify-center md:justify-end mt-4 md:mt-0">
+          <img
+            src={report.image}
+            alt="Explanation Image 1"
+            className="w-full md:w-60 h-32 object-cover rounded-lg cursor-pointer transition-transform duration-300 hover:scale-125"
+            onClick={() => window.open(report.image, "_blank")}
+          />
+        </div>
       </div>
       {currentUser.is_patient === false ? (
         report.is_melanoma === "Yes" ? (
-          <div className="bg-gray-100 shadow-lg rounded-lg p-6 my-8 flex justify-between items-center">
-            <div>
-              <h1 className="text-2xl font-semibold text-left my-8">
-                Model Prediction
-              </h1>
+          <div className="bg-gray-100 shadow-lg rounded-lg p-6 mb-8 flex flex-col md:flex-row justify-between items-center">
+            <div className="w-full md:w-1/2">
+              <h1 className="text-2xl font-semibold text-left mb-8">Model Prediction</h1>
               <p className="text-lg mb-4">
                 <strong>Melanoma Probability: </strong>
                 <span className="text-red-500 font-bold">
@@ -236,27 +230,25 @@ const Report = () => {
             </div>
 
             {/* Image section */}
-            <div className="ml-8 flex space-x-4">
+            <div className="w-full md:w-1/2 flex justify-center md:justify-end mt-4 md:mt-0 space-x-4">
               <img
                 src={report.xai_image_1}
                 alt="Explanation Image 1"
-                className="w-60 h-32 object-cover rounded-lg cursor-pointer transition-transform duration-300 hover:scale-125"
+                className="w-full md:w-60 h-32 object-cover rounded-lg cursor-pointer transition-transform duration-300 hover:scale-125"
                 onClick={() => window.open(report.xai_image_1, "_blank")}
               />
               <img
                 src={report.xai_image_2}
                 alt="Explanation Image 2"
-                className="w-60 h-32 object-cover rounded-lg cursor-pointer transition-transform duration-300 hover:scale-125"
+                className="w-full md:w-60 h-32 object-cover rounded-lg cursor-pointer transition-transform duration-300 hover:scale-125"
                 onClick={() => window.open(report.xai_image_2, "_blank")}
               />
             </div>
           </div>
         ) : (
-          <div className="bg-gray-100 shadow-lg rounded-lg p-6 my-8 flex justify-between items-center">
-            <div>
-              <h1 className="text-2xl font-semibold text-left my-8">
-                Model Prediction
-              </h1>
+          <div className="bg-gray-100 shadow-lg rounded-lg p-6 mb-8 flex flex-col md:flex-row justify-between items-center">
+            <div className="w-full md:w-1/2">
+              <h1 className="text-2xl font-semibold text-left mb-8">Model Prediction</h1>
               <p className="text-lg mb-4">
                 <strong>Disease Class: </strong>
                 <span className="text-red-500 font-bold">
@@ -273,17 +265,17 @@ const Report = () => {
               )}
             </div>
 
-            <div className="ml-8 flex space-x-4">
+            <div className="w-full md:w-1/2 flex justify-center md:justify-end mt-4 md:mt-0 space-x-4">
               <img
                 src={report.xai_image_1}
                 alt="Explanation Image 1"
-                className="w-60 h-32 object-cover rounded-lg cursor-pointer transition-transform duration-300 hover:scale-125"
+                className="w-full md:w-60 h-32 object-cover rounded-lg cursor-pointer transition-transform duration-300 hover:scale-125"
                 onClick={() => window.open(report.xai_image_1, "_blank")}
               />
               <img
                 src={report.xai_image_2}
                 alt="Explanation Image 2"
-                className="w-60 h-32 object-cover rounded-lg cursor-pointer transition-transform duration-300 hover:scale-125"
+                className="w-full md:w-60 h-32 object-cover rounded-lg cursor-pointer transition-transform duration-300 hover:scale-125"
                 onClick={() => window.open(report.xai_image_2, "_blank")}
               />
             </div>
@@ -291,10 +283,8 @@ const Report = () => {
         )
       ) : null}
 
-      <div className="bg-gray-100 shadow-lg rounded-lg p-6 my-8">
-        <h1 className="text-2xl font-semibold text-left my-8">
-          Doctor's Review
-        </h1>
+      <div className="bg-gray-100 shadow-lg rounded-lg p-6 mb-8">
+        <h1 className="text-2xl font-semibold text-left mb-8">Doctor's Review</h1>
 
         {currentUser.is_patient === false ? (
           <>
@@ -310,7 +300,7 @@ const Report = () => {
               rows="4"
             />
 
-            <div className="ml-8 flex space-x-4">
+            <div className="flex space-x-4">
               <button
                 className="bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600 transition duration-300"
                 onClick={handlePostComment} // Function to post the comment
