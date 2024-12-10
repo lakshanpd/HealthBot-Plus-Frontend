@@ -91,7 +91,7 @@ const SkinVisionPage = () => {
       <Navbar />
       {/* First Section */}
       <section
-        className="relative h-screen flex flex-col-reverse py-6 lg:flex-row items-center"
+        className="relative h-screen flex flex-col-reverse py-3 lg:flex-row items-center"
         style={{ backgroundColor: "#ffffff" }}
       >
         <div className="relative container mx-4 md:mx-10 flex flex-col lg:flex-row items-center lg:justify-between h-full px-4 lg:px-8 space-y-6 lg:space-y-0 lg:space-x-1">
@@ -138,7 +138,7 @@ const SkinVisionPage = () => {
       </section>
 
       {/* Second Section */}
-      <section className="bg-white flex flex-col py-9 items-center p-4 md:p-8">
+      <section className="bg-white flex flex-col py-1 items-center p-4 md:p-8">
         <div className="bg-slate-100 shadow-lg rounded-lg p-4 md:p-8 flex flex-col items-center border border-gray-500 w-full lg:max-w-5xl">
           <div className="text-center text-gray-700">
             <h1 className="text-xl md:text-2xl font-bold mb-2 py-6">
@@ -178,9 +178,8 @@ const SkinVisionPage = () => {
       {/* Chat Section */}
       <div
         onClick={() => setChatClicked(true)}
-        className={`fixed right-[55px] bottom-[45px] bg-blue-500 text-white text-sm font-semibold rounded-tl-xl rounded-tr-xl rounded-bl-xl p-2 flex items-center hover:bg-blue-700 transition-all duration-1000 ease-in-out ${
-          chatClicked ? "w-96 h-100" : "w-40 h-10 justify-center bg-blue-700"
-        }`}
+        className={`fixed right-[55px] bottom-[45px] bg-blue-500 text-white text-sm font-semibold rounded-tl-xl rounded-tr-xl rounded-bl-xl p-2 flex items-center hover:bg-blue-700 transition-all duration-1000 ease-in-out ${chatClicked ? "w-80 h-100" : "w-40 h-10 justify-center bg-blue-700"
+          }`}
       >
         {chatClicked ? (
           <div className="flex flex-col items-start justify-center">
@@ -192,7 +191,11 @@ const SkinVisionPage = () => {
                 setChatClicked(false);
               }}
             />
-            {showRecorder && <AudioRecorder />}
+            {window.innerWidth < 768 ? (
+              <p className="text-center mt-2">Please use desktop version to access the chatbot</p>
+            ) : (
+              showRecorder && <AudioRecorder />
+            )}
           </div>
         ) : (
           <>
@@ -202,6 +205,7 @@ const SkinVisionPage = () => {
           </>
         )}
       </div>
+
 
       <Footer />
     </div>
